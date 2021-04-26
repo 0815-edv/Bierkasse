@@ -1,0 +1,15 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "benutzer" (
+	"id_rfid"	INTEGER,
+	"gutaben"	INTEGER,
+	"name"	TEXT,
+	"vorname"	TEXT,
+	PRIMARY KEY("id_rfid" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "kaefe" (
+	"id"	INTEGER,
+	"datum"	TEXT,
+	"id_rfid"	INTEGER,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+COMMIT;
