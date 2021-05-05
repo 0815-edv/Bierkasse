@@ -9,13 +9,13 @@ package test;
  *
  * @author flori
  */
-public class person {
+public class Person {
     
     private String name;
     private String vorname;
     private String id;
 
-    public person(String name, String vorname, String id) {
+    public Person(String name, String vorname, String id) {
         this.name = name;
         this.vorname = vorname;
         this.id = id;
@@ -45,6 +45,8 @@ public class person {
     public void setId(String id) {
         this.id = id;
     }
+    
+   
     
     
     
