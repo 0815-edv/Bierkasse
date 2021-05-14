@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package test;
+package repository;
+
+import entity.Customer;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  *
  * @author flori
  */
-public interface UserRepository {
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
     
 }
