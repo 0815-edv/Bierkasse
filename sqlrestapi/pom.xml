@@ -8,18 +8,22 @@
 		<version>2.4.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>de.0815edv</groupId>
-	<artifactId>Bierkasse</artifactId>
+	<groupId>de.bierkasse</groupId>
+	<artifactId>sqlrestapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Bierkasse</name>
-	<description>Pay Management for Beer Consumer</description>
+	<name>sqlrestapi</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
