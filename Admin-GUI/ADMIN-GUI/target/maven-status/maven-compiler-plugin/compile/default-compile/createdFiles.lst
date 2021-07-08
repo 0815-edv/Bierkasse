@@ -1,9 +1,10 @@
-de\dlrg\de\admin\gui\ware.class
+sqlclass\kauefe.class
 de\dlrg\de\admin\gui\AdminGUI$1.class
 de\dlrg\de\admin\gui\AdminGUI.class
-de\dlrg\de\admin\gui\benutzer.class
+sqlclass\benutzer.class
+de\dlrg\de\admin\gui\appController$1.class
 de\dlrg\de\admin\gui\BenutzerTableModel.class
 de\dlrg\de\admin\gui\sql\DBConnector.class
 de\dlrg\de\admin\gui\sql\DBConnectorMysql.class
-de\dlrg\de\admin\gui\kauefe.class
 de\dlrg\de\admin\gui\appController.class
+sqlclass\ware.class

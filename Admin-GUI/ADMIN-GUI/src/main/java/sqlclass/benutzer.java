@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dlrg.de.admin.gui;
+package sqlclass;
 
 /**
  *
  * @author flori
  */
-public class benutzer {
+public class Benutzer {
 
     private int idrfid;
     private String name;
@@ -17,7 +17,7 @@ public class benutzer {
     private double guthaben;
     private int isAdmin;    // 0-> ist kein Admin --  1-> ist Admin
 
-    public benutzer(int idrfid, String name, String vorname, double guthaben, int isAdmin) {
+    public Benutzer(int idrfid, String name, String vorname, double guthaben, int isAdmin) {
         this.idrfid = idrfid;
         this.name = name;
         this.vorname = vorname;

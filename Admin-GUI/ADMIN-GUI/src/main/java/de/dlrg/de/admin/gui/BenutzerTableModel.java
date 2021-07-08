@@ -5,6 +5,7 @@
  */
 package de.dlrg.de.admin.gui;
 
+import sqlclass.Benutzer;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  * @author flori
  */
 public class BenutzerTableModel extends AbstractTableModel{
-    private List<benutzer> benutzer;
+    private List<Benutzer> benutzer;
 
     @Override
     public int getRowCount() {
