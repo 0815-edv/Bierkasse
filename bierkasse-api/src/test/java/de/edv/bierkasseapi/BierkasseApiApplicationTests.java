@@ -1,10 +1,10 @@
-package de.bierkasse.sqlrestapi;
+package de.edv.bierkasseapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SqlrestapiApplicationTests {
+class BierkasseApiApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,0 @@
-controller\CustomerController.class
-entity\Customer.class
-repository\CustomerRepository.class
-de\bierkasse\sqlrestapi\SqlrestapiApplication.class
