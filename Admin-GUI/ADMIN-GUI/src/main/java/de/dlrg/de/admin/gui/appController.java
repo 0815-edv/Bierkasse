@@ -20,15 +20,22 @@ public class appController {
     
     private AdminGUI adminGUI;
     private DBConnector dBConnector;
+    private BenutzerFromDB benutzerliste;
     
     
     public void initApp(){
+        
+        
+        dBConnector = new DBConnectorMysql("192.168.0.227", 3306, "flwerner", "Start123!", "bierkassedlrg");
+        
+        benutzerliste = new BenutzerFromDB(dBConnector);
+        
+        
         adminGUI = new AdminGUI();
-        adminGUI.setVisible(true);
-        
-        dBConnector = new DBConnectorMysql("10.25.6.229", 3306, "flwerner", "Start123!", "bierkassedlrg");
         adminGUI.setDBConnector(dBConnector);
-        
+        adminGUI.setBenutzerListe(benutzerliste);
+        adminGUI.initialisierung();
+        adminGUI.setVisible(true);
     }
     
     public static void main(String[] args) {

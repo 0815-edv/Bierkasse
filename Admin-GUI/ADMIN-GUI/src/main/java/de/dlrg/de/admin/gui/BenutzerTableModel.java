@@ -16,6 +16,10 @@ import javax.swing.table.AbstractTableModel;
 public class BenutzerTableModel extends AbstractTableModel{
     private List<Benutzer> benutzer;
 
+    public BenutzerTableModel(List<Benutzer> benutzer) {
+        this.benutzer = benutzer;
+    }
+
     @Override
     public int getRowCount() {
         return benutzer.size();
@@ -44,7 +48,11 @@ public class BenutzerTableModel extends AbstractTableModel{
         return false;
             
     }
-    
+    public String getColumnName(int index) {
+
+        String[] title = {"ID-RFID", "Name", "Vorname", "Guthaben", "ADMIN"};
+        return title[index];
+    }
         
     
 }

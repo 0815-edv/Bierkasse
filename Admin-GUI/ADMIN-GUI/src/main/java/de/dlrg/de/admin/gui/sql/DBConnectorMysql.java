@@ -15,19 +15,18 @@ import java.util.logging.Logger;
  *
  * @author flori
  */
-public class DBConnectorMysql extends DBConnector{
+public class DBConnectorMysql extends DBConnector {
 
     public DBConnectorMysql(String ip, int port, String user, String password, String dbName) {
         super(ip, port, user, password, dbName);
     }
-    
-    
+
     @Override
     public void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.
-                    getConnection("jdbc:mysql://"+ ip+":"+port+ "/"+ dbName, user, password);
+                    getConnection("jdbc:mysql://" + ip + ":" + port + "/" + dbName, user, password);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -44,7 +43,7 @@ public class DBConnectorMysql extends DBConnector{
         } catch (SQLException ex) {
             Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @Override
@@ -62,5 +61,17 @@ public class DBConnectorMysql extends DBConnector{
             return null;
         }
     }
-    
+
+    public void update(String sql) {
+        if (sql != null) {
+            try {
+                stat = con.createStatement();
+                stat.executeUpdate(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
 }

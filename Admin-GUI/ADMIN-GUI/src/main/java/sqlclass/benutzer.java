@@ -30,6 +30,10 @@ public class Benutzer {
         }
     }
 
+    public Benutzer() {
+    }
+    
+
     public int getIdrfid() {
         return idrfid;
     }

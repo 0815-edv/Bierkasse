@@ -6,6 +6,8 @@
 package de.dlrg.de.admin.gui;
 
 import de.dlrg.de.admin.gui.sql.DBConnector;
+import java.util.ArrayList;
+import sqlclass.Benutzer;
 
 /**
  *
@@ -18,20 +20,27 @@ public class AdminGUI extends javax.swing.JFrame {
      */
     private DBConnector dBConnector;
     private BenutzerTableModel benutzerTableModel;
-    
-    
+    private BenutzerFromDB benutzerliste;
+
     public AdminGUI() {
         initComponents();
+        
     }
-    
-    public void inti(){
-    
-        benutzerTableModel = new BenutzerTableModel();
+
+    public void initialisierung() {
+
+        benutzerTableModel = new BenutzerTableModel(benutzerliste.get());
         jtableausgabe.setModel(benutzerTableModel);
+
     }
-    
-    public void setDBConnector(DBConnector dBConnector){
-    this.dBConnector = dBConnector;
+
+    public void setDBConnector(DBConnector dBConnector) {
+        this.dBConnector = dBConnector;
+    }
+
+    public void setBenutzerListe(BenutzerFromDB tmp) {
+
+        benutzerliste = tmp;
     }
 
     /**
@@ -57,6 +66,11 @@ public class AdminGUI extends javax.swing.JFrame {
         txfvorname = new javax.swing.JTextField();
         txfguthaben = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        btnadd10 = new javax.swing.JButton();
+        btnadd20 = new javax.swing.JButton();
+        btnadd30 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +85,11 @@ public class AdminGUI extends javax.swing.JFrame {
 
             }
         ));
+        jtableausgabe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtableausgabeMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtableausgabe);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -85,7 +104,7 @@ public class AdminGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Benutzer");
@@ -98,7 +117,59 @@ public class AdminGUI extends javax.swing.JFrame {
 
         jLabel5.setText("Guthaben");
 
+        txfguthaben.setEnabled(false);
+
         jButton1.setText("Ändern");
+
+        jPanel3.setBackground(new java.awt.Color(0, 255, 255));
+        jPanel3.setForeground(new java.awt.Color(0, 0, 0));
+
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Guthaben aufladen");
+
+        btnadd10.setText("10 EURO");
+
+        btnadd20.setText("20 EURO");
+        btnadd20.setActionCommand("20 EURO");
+        btnadd20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadd20ActionPerformed(evt);
+            }
+        });
+
+        btnadd30.setText("30 EURO");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(76, 76, 76))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnadd10, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnadd20, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnadd30, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnadd10)
+                    .addComponent(btnadd20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnadd30)
+                .addContainerGap(42, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -128,6 +199,9 @@ public class AdminGUI extends javax.swing.JFrame {
                             .addComponent(txfvorname)
                             .addComponent(txfguthaben))))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +226,9 @@ public class AdminGUI extends javax.swing.JFrame {
                     .addComponent(txfguthaben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,6 +256,21 @@ public class AdminGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtableausgabeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableausgabeMouseClicked
+        // TODO add your handling code here:
+        Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
+        
+        txfrfidchip.setText(String.valueOf(tmp.getIdrfid()));
+        txfvorname.setText(tmp.getVorname());
+        txfname.setText(tmp.getName());
+        txfguthaben.setText(String.valueOf(tmp.getGuthaben()));
+        
+    }//GEN-LAST:event_jtableausgabeMouseClicked
+
+    private void btnadd20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnadd20ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,14 +308,19 @@ public class AdminGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnadd10;
+    private javax.swing.JButton btnadd20;
+    private javax.swing.JButton btnadd30;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtableausgabe;
     private javax.swing.JTextField txfguthaben;
