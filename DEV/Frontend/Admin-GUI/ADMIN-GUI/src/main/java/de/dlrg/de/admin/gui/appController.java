@@ -26,7 +26,7 @@ public class appController {
     public void initApp(){
         
         
-        dBConnector = new DBConnectorMysql("10.25.6.229", 3306, "flwerner", "Start123!", "bierkassedlrg");
+        dBConnector = new DBConnectorMysql("192.168.0.227", 3306, "flwerner", "Start123!", "bierkassedlrg");
         
         benutzerliste = new BenutzerFromDB(dBConnector);
         

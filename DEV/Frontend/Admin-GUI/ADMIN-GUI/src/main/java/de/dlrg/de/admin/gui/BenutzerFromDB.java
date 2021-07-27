@@ -5,6 +5,7 @@
  */
 package de.dlrg.de.admin.gui;
 
+import ENUM.Guthaben;
 import de.dlrg.de.admin.gui.sql.DBConnector;
 import java.sql.*;
 import java.util.ArrayList;
@@ -53,4 +54,18 @@ public class BenutzerFromDB {
     public ArrayList<Benutzer> get() {
         return benutzer;
     }
+    
+    public void changeGuthaben(Guthaben guthaben, Benutzer tmp) {
+        Benutzer current = tmp;
+        if (guthaben == Guthaben.zehn) {
+            dBConnector.update("UPDATE benutzer SET guthaben = guthaben +10 Where idrfid like " + current.getIdrfid() +";");
+        }
+        if (guthaben == Guthaben.zwanzig) {
+            dBConnector.update("UPDATE benutzer SET guthaben = guthaben +20 Where idrfid like " + current.getIdrfid() +";");
+        } 
+        if (guthaben == Guthaben.dreisig) {
+            dBConnector.update("UPDATE benutzer SET guthaben = guthaben +20 Where idrfid like " + current.getIdrfid() +";");
+        } 
+        
+    } 
 }

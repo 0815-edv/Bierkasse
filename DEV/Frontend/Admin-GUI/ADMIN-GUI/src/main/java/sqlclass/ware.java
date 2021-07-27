@@ -9,16 +9,16 @@ package sqlclass;
  *
  * @author flori
  */
-public class ware {
+public class Ware {
     private int id;
     private String name;
 
-    public ware(int id, String name) {
+    public Ware(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public ware() {
+    public Ware() {
     }
 
     public int getId() {

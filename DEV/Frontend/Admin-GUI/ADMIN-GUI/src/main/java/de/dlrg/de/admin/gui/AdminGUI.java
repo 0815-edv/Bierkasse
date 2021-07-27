@@ -5,6 +5,7 @@
  */
 package de.dlrg.de.admin.gui;
 
+import ENUM.Guthaben;
 import de.dlrg.de.admin.gui.sql.DBConnector;
 import java.util.ArrayList;
 import sqlclass.Benutzer;
@@ -128,9 +129,13 @@ public class AdminGUI extends javax.swing.JFrame {
         jLabel6.setText("Guthaben aufladen");
 
         btnadd10.setText("10 EURO");
+        btnadd10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadd10ActionPerformed(evt);
+            }
+        });
 
         btnadd20.setText("20 EURO");
-        btnadd20.setActionCommand("20 EURO");
         btnadd20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnadd20ActionPerformed(evt);
@@ -271,6 +276,13 @@ public class AdminGUI extends javax.swing.JFrame {
     private void btnadd20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd20ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnadd20ActionPerformed
+
+    private void btnadd10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd10ActionPerformed
+        // TODO add your handling code here:
+        Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
+        benutzerliste.changeGuthaben(Guthaben.zehn, tmp);
+        
+    }//GEN-LAST:event_btnadd10ActionPerformed
 
     /**
      * @param args the command line arguments

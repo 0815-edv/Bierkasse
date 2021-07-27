@@ -62,6 +62,7 @@ public class DBConnectorMysql extends DBConnector {
         }
     }
 
+    @Override
     public void update(String sql) {
         if (sql != null) {
             try {

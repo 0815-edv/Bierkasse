@@ -38,5 +38,7 @@ public abstract class DBConnector {
     public abstract void disconnect();
 
     public abstract ResultSet query(String sql);
+    
+    public void update(String sql){};
 
 }
