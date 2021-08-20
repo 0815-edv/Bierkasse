@@ -1,4 +1,6 @@
+sqlclass\Ware.class
 de\dlrg\de\admin\gui\AdminGUI$1.class
+de\dlrg\de\admin\gui\AdminGUI$6.class
 de\dlrg\de\admin\gui\BenutzerTableModel.class
 ENUM\Guthaben.class
 de\dlrg\de\admin\gui\FromDB.class
@@ -13,4 +15,3 @@ de\dlrg\de\admin\gui\AdminGUI$3.class
 de\dlrg\de\admin\gui\sql\DBConnectorMysql.class
 sqlclass\Benutzer.class
 de\dlrg\de\admin\gui\appController.class
-sqlclass\ware.class

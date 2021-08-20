@@ -6,6 +6,7 @@
 package de.dlrg.de.admin.gui.sql;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -38,6 +39,8 @@ public abstract class DBConnector {
     public abstract void disconnect();
 
     public abstract ResultSet query(String sql);
+    
+    public abstract void insert(PreparedStatement psql, String query);
     
     public void update(String sql){};
 

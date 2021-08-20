@@ -138,6 +138,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel3" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnWare" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -169,7 +174,9 @@
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="215" max="32767" attributes="0"/>
+                  <EmptySpace pref="185" max="32767" attributes="0"/>
+                  <Component id="btnWare" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -215,6 +222,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xc4;ndern"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
@@ -294,9 +304,20 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="30 EURO"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnadd30ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JButton" name="btnWare">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ware"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnWareActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

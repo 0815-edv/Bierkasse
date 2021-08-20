@@ -7,7 +7,10 @@ package de.dlrg.de.admin.gui;
 
 import ENUM.Guthaben;
 import de.dlrg.de.admin.gui.sql.DBConnector;
-import java.util.ArrayList;
+import de.dlrg.de.admin.login.LoginGUI;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sqlclass.Benutzer;
 
 /**
@@ -22,9 +25,13 @@ public class AdminGUI extends javax.swing.JFrame {
     private DBConnector dBConnector;
     private BenutzerTableModel benutzerTableModel;
     private BenutzerFromDB benutzerliste;
+    private WareGUI wareGUI;
+    private LoginGUI loginGUI;
+    
 
     public AdminGUI() {
         initComponents();
+        
         
     }
 
@@ -42,6 +49,9 @@ public class AdminGUI extends javax.swing.JFrame {
     public void setBenutzerListe(BenutzerFromDB tmp) {
 
         benutzerliste = tmp;
+    }
+    public void setWareGUI(WareGUI wareGUI) {
+        this.wareGUI = wareGUI;
     }
 
     /**
@@ -72,6 +82,7 @@ public class AdminGUI extends javax.swing.JFrame {
         btnadd10 = new javax.swing.JButton();
         btnadd20 = new javax.swing.JButton();
         btnadd30 = new javax.swing.JButton();
+        btnWare = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,6 +132,11 @@ public class AdminGUI extends javax.swing.JFrame {
         txfguthaben.setEnabled(false);
 
         jButton1.setText("Ändern");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(0, 255, 255));
         jPanel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -143,6 +159,11 @@ public class AdminGUI extends javax.swing.JFrame {
         });
 
         btnadd30.setText("30 EURO");
+        btnadd30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadd30ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -176,6 +197,13 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
+        btnWare.setText("Ware");
+        btnWare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWareActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -207,6 +235,10 @@ public class AdminGUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnWare)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +265,9 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addComponent(btnWare)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,51 +309,54 @@ public class AdminGUI extends javax.swing.JFrame {
 
     private void btnadd20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd20ActionPerformed
         // TODO add your handling code here:
+        Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
+        try {
+            benutzerliste.changeGuthaben(Guthaben.zwanzig, tmp);
+            jtableausgabe.repaint();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnadd20ActionPerformed
 
     private void btnadd10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd10ActionPerformed
         // TODO add your handling code here:
         Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
-        benutzerliste.changeGuthaben(Guthaben.zehn, tmp);
+        try {
+            benutzerliste.changeGuthaben(Guthaben.zehn, tmp);
+            jtableausgabe.repaint();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_btnadd10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnadd30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd30ActionPerformed
+        // TODO add your handling code here:
+        Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
+        try {
+            benutzerliste.changeGuthaben(Guthaben.dreisig, tmp);
+            jtableausgabe.repaint();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnadd30ActionPerformed
+
+    private void btnWareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWareActionPerformed
+        // TODO add your handling code here:
+        wareGUI.setVisible(true);
+    }//GEN-LAST:event_btnWareActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminGUI().setVisible(true);
-            }
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnWare;
     private javax.swing.JButton btnadd10;
     private javax.swing.JButton btnadd20;
     private javax.swing.JButton btnadd30;

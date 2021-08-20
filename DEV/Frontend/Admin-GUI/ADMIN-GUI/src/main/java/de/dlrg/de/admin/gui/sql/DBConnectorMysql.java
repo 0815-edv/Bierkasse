@@ -6,6 +6,7 @@
 package de.dlrg.de.admin.gui.sql;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -72,6 +73,17 @@ public class DBConnectorMysql extends DBConnector {
                 Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        }
+    }
+    @Override
+    public void insert(PreparedStatement psql, String query){
+        try {
+            if (query != null & psql != null){
+            psql = con.prepareStatement(query);
+            psql.execute();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

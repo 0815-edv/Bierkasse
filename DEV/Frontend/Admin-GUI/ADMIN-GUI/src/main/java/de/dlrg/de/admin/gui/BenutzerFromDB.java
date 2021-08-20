@@ -35,7 +35,7 @@ public class BenutzerFromDB {
     
     
     private void getData() throws SQLException{
-    
+        benutzer.clear();
         dBConnector.connect();
         rs = dBConnector.query("Select * FROM benutzer");
         while (rs.next()){
@@ -55,7 +55,7 @@ public class BenutzerFromDB {
         return benutzer;
     }
     
-    public void changeGuthaben(Guthaben guthaben, Benutzer tmp) {
+    public void changeGuthaben(Guthaben guthaben, Benutzer tmp) throws SQLException {
         Benutzer current = tmp;
         if (guthaben == Guthaben.zehn) {
             dBConnector.update("UPDATE benutzer SET guthaben = guthaben +10 Where idrfid like " + current.getIdrfid() +";");
@@ -64,8 +64,9 @@ public class BenutzerFromDB {
             dBConnector.update("UPDATE benutzer SET guthaben = guthaben +20 Where idrfid like " + current.getIdrfid() +";");
         } 
         if (guthaben == Guthaben.dreisig) {
-            dBConnector.update("UPDATE benutzer SET guthaben = guthaben +20 Where idrfid like " + current.getIdrfid() +";");
+            dBConnector.update("UPDATE benutzer SET guthaben = guthaben +30 Where idrfid like " + current.getIdrfid() +";");
         } 
+        getData();
         
     } 
 }

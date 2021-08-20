@@ -6,29 +6,61 @@
 package de.dlrg.de.admin.gui;
 
 import de.dlrg.de.admin.gui.sql.DBConnector;
+
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import sqlclass.Ware;
+
 /**
  *
  * @author flori
  */
 public class WareFromDB {
-    
-    private DBConnector dbConnector;
-    private ResultSet rs =null;
-    
-    private ArrayList<Ware> waren;
 
-    public WareFromDB(DBConnector dbConnector) {
+    private DBConnector dbConnector;
+    private ResultSet rs = null;
+
+    private ArrayList<Ware> waren = new ArrayList<>();
+
+    public WareFromDB(DBConnector dbConnector) throws SQLException {
         this.dbConnector = dbConnector;
+        getData();
     }
-    
-    
-    private void getData() throws SQLException{
-    
+
+    private void getData() throws SQLException {
+        dbConnector.connect();
         rs = dbConnector.query("Select * FROM Ware");
         while (rs.next()) {
-        
+            Ware tmp = new Ware();
+            tmp.setId(rs.getInt(1));
+            tmp.setName(rs.getString(2));
+            waren.add(tmp);
+        }
+    }
+
+    public ArrayList<Ware> get() {
+        return waren;
+    }
+
+    public void addWare(String name) throws SQLException {
+        String query = "insert into Ware (id, name)"
+                + " Values (?, ?)";
+        PreparedStatement psql = null;
+        int ID = waren.size() + 1;
+        for (int i = 0; i < waren.size(); i++) {
+            if (ID == waren.get(i).getId()) {
+                ID = ID + 1;
+                i = 0;
+            } else {
+                i = waren.size();
+            }
+
+        }
+        if (name != null) {
+            psql.setInt(1, ID);
+            psql.setString(2, name);
+            dbConnector.insert(psql, query);
         }
     }
 }
