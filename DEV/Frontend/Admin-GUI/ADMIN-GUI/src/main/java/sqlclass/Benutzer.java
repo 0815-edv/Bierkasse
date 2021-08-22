@@ -16,12 +16,14 @@ public class Benutzer {
     private String vorname;
     private double guthaben;
     private int isAdmin;    // 0-> ist kein Admin --  1-> ist Admin
+    private long chipid;
 
-    public Benutzer(int idrfid, String name, String vorname, double guthaben, int isAdmin) {
+    public Benutzer(int idrfid, String name, String vorname, double guthaben, int isAdmin, Long chipid) {
         this.idrfid = idrfid;
         this.name = name;
         this.vorname = vorname;
         this.guthaben = guthaben;
+        this.chipid = chipid;
 
         if (isAdmin >= 0 || isAdmin <= 1) {
             this.isAdmin = isAdmin;
@@ -69,6 +71,15 @@ public class Benutzer {
     public int getIsAdmin() {
         return isAdmin;
     }
+
+    public Long getChipid() {
+        return chipid;
+    }
+
+    public void setChipid(Long chipid) {
+        this.chipid = chipid;
+    }
+    
 
     public void setIsAdmin(int isAdmin) {
         if (isAdmin >= 0 || isAdmin <= 1) {

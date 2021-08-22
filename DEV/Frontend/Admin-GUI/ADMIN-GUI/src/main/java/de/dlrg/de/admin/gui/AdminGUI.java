@@ -83,6 +83,8 @@ public class AdminGUI extends javax.swing.JFrame {
         btnadd20 = new javax.swing.JButton();
         btnadd30 = new javax.swing.JButton();
         btnWare = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txfchipid = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,7 +118,7 @@ public class AdminGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 13, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Benutzer");
@@ -204,6 +206,8 @@ public class AdminGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Chipid");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -223,14 +227,16 @@ public class AdminGUI extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txfrfidchip)
                             .addComponent(txfname)
                             .addComponent(txfvorname)
-                            .addComponent(txfguthaben))))
+                            .addComponent(txfguthaben)
+                            .addComponent(txfchipid))))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
@@ -262,10 +268,14 @@ public class AdminGUI extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txfguthaben, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txfchipid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                 .addComponent(btnWare)
                 .addContainerGap())
         );
@@ -304,6 +314,7 @@ public class AdminGUI extends javax.swing.JFrame {
         txfvorname.setText(tmp.getVorname());
         txfname.setText(tmp.getName());
         txfguthaben.setText(String.valueOf(tmp.getGuthaben()));
+        txfchipid.setText(String.valueOf(tmp.getChipid()));
         
     }//GEN-LAST:event_jtableausgabeMouseClicked
 
@@ -332,6 +343,15 @@ public class AdminGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
+        tmp.setIdrfid(Integer.parseInt(txfrfidchip.getText()));
+        tmp.setName(txfname.getText());
+        tmp.setVorname(txfvorname.getText());
+        try {
+            benutzerliste.update(tmp);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnadd30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd30ActionPerformed
@@ -367,11 +387,13 @@ public class AdminGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtableausgabe;
+    private javax.swing.JTextField txfchipid;
     private javax.swing.JTextField txfguthaben;
     private javax.swing.JTextField txfname;
     private javax.swing.JTextField txfrfidchip;

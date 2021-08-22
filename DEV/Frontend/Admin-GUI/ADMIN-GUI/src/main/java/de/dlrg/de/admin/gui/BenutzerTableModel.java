@@ -27,7 +27,7 @@ public class BenutzerTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-           return 5;
+           return 6;
     }
 
     @Override
@@ -41,7 +41,9 @@ public class BenutzerTableModel extends AbstractTableModel{
                 return benutzer.get(rowIndex).getVorname();
             case 3:
                 return benutzer.get(rowIndex).getGuthaben();
-            case 4:
+            case 4: 
+                return benutzer.get(rowIndex).getChipid();
+            case 5:
                 return benutzer.get(rowIndex).getIsAdmin();
         
         }
@@ -50,7 +52,7 @@ public class BenutzerTableModel extends AbstractTableModel{
     }
     public String getColumnName(int index) {
 
-        String[] title = {"ID-RFID", "Name", "Vorname", "Guthaben", "ADMIN"};
+        String[] title = {"ID-RFID", "Name", "Vorname", "Guthaben", "ChipId", "ADMIN"};
         return title[index];
     }
         

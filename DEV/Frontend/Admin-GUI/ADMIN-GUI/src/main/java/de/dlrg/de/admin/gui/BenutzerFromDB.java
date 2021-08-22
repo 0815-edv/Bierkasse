@@ -45,6 +45,7 @@ public class BenutzerFromDB {
             tmp.setVorname(rs.getString(3));
             tmp.setGuthaben(rs.getInt(4));
             tmp.setIsAdmin(rs.getInt(5));
+            tmp.setChipid(rs.getLong(6));
             benutzer.add(tmp);
         }
         
@@ -53,6 +54,13 @@ public class BenutzerFromDB {
     
     public ArrayList<Benutzer> get() {
         return benutzer;
+    }
+    
+    public void update(Benutzer tmp) throws SQLException{
+        dBConnector.update("UPDATE benutzer "
+                + "SET name = " + "'"+tmp.getName()+"', " +"vorname = " + "'"+tmp.getVorname()+"', " + "chipid = " + tmp.getChipid()+", "
+                + "Where idrfid = " + tmp.getIdrfid());
+    
     }
     
     public void changeGuthaben(Guthaben guthaben, Benutzer tmp) throws SQLException {
