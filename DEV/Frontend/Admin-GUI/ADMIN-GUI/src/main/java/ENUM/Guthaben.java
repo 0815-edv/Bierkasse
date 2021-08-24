@@ -13,5 +13,6 @@ public enum Guthaben {
     
     zehn,
     zwanzig,
-    dreisig;
+    dreisig,
+    fuenfzig;
 }

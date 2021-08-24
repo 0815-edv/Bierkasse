@@ -27,12 +27,12 @@ public class AdminGUI extends javax.swing.JFrame {
     private BenutzerFromDB benutzerliste;
     private WareGUI wareGUI;
     private LoginGUI loginGUI;
-    
+    private AddUserGUI addusergui;
+    private AdminGUI admingui;
 
     public AdminGUI() {
         initComponents();
-        
-        
+
     }
 
     public void initialisierung() {
@@ -50,8 +50,17 @@ public class AdminGUI extends javax.swing.JFrame {
 
         benutzerliste = tmp;
     }
+
     public void setWareGUI(WareGUI wareGUI) {
         this.wareGUI = wareGUI;
+    }
+
+    public void setAdmingui(AdminGUI admingui) {
+        this.admingui = admingui;
+    }
+
+    public void refresh() {
+        jtableausgabe.repaint();
     }
 
     /**
@@ -76,15 +85,18 @@ public class AdminGUI extends javax.swing.JFrame {
         txfname = new javax.swing.JTextField();
         txfvorname = new javax.swing.JTextField();
         txfguthaben = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnändern = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btnadd10 = new javax.swing.JButton();
         btnadd20 = new javax.swing.JButton();
-        btnadd30 = new javax.swing.JButton();
+        btnadd50 = new javax.swing.JButton();
         btnWare = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txfchipid = new javax.swing.JTextField();
+        btnadduser = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        btnremove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +135,7 @@ public class AdminGUI extends javax.swing.JFrame {
 
         jLabel1.setText("Benutzer");
 
-        jLabel2.setText("RFID-Chip");
+        jLabel2.setText("ID");
 
         jLabel3.setText("Name");
 
@@ -133,10 +145,10 @@ public class AdminGUI extends javax.swing.JFrame {
 
         txfguthaben.setEnabled(false);
 
-        jButton1.setText("Ändern");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnändern.setText("Ändern");
+        btnändern.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnändernActionPerformed(evt);
             }
         });
 
@@ -160,10 +172,10 @@ public class AdminGUI extends javax.swing.JFrame {
             }
         });
 
-        btnadd30.setText("30 EURO");
-        btnadd30.addActionListener(new java.awt.event.ActionListener() {
+        btnadd50.setText("50 EURO");
+        btnadd50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnadd30ActionPerformed(evt);
+                btnadd50ActionPerformed(evt);
             }
         });
 
@@ -182,7 +194,7 @@ public class AdminGUI extends javax.swing.JFrame {
                         .addComponent(btnadd10, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnadd20, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnadd30, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnadd50, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -195,7 +207,7 @@ public class AdminGUI extends javax.swing.JFrame {
                     .addComponent(btnadd10)
                     .addComponent(btnadd20))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnadd30)
+                .addComponent(btnadd50)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -206,7 +218,23 @@ public class AdminGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Chipid");
+        jLabel7.setText("RFID-CHIP");
+
+        btnadduser.setText("Neuer Benutzer");
+        btnadduser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadduserActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Benutzer Historie");
+
+        btnremove.setText("Remove");
+        btnremove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnremoveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,33 +246,35 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addGap(114, 114, 114))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnremove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txfrfidchip)
-                            .addComponent(txfname)
-                            .addComponent(txfvorname)
-                            .addComponent(txfguthaben)
-                            .addComponent(txfchipid))))
+                    .addComponent(txfrfidchip)
+                    .addComponent(txfname)
+                    .addComponent(txfvorname)
+                    .addComponent(txfguthaben)
+                    .addComponent(txfchipid)
+                    .addComponent(btnändern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnWare)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(btnWare)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnadduser)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,12 +301,18 @@ public class AdminGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txfchipid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnändern)
+                    .addComponent(btnremove))
+                .addGap(17, 17, 17)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addComponent(btnWare)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnWare)
+                    .addComponent(btnadduser))
                 .addContainerGap())
         );
 
@@ -309,13 +345,13 @@ public class AdminGUI extends javax.swing.JFrame {
     private void jtableausgabeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableausgabeMouseClicked
         // TODO add your handling code here:
         Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
-        
+
         txfrfidchip.setText(String.valueOf(tmp.getIdrfid()));
         txfvorname.setText(tmp.getVorname());
         txfname.setText(tmp.getName());
         txfguthaben.setText(String.valueOf(tmp.getGuthaben()));
         txfchipid.setText(String.valueOf(tmp.getChipid()));
-        
+
     }//GEN-LAST:event_jtableausgabeMouseClicked
 
     private void btnadd20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd20ActionPerformed
@@ -338,10 +374,10 @@ public class AdminGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_btnadd10ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnändernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnändernActionPerformed
         // TODO add your handling code here:
         Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
         tmp.setIdrfid(Integer.parseInt(txfrfidchip.getText()));
@@ -352,35 +388,56 @@ public class AdminGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnändernActionPerformed
 
-    private void btnadd30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd30ActionPerformed
+    private void btnadd50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadd50ActionPerformed
         // TODO add your handling code here:
         Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
         try {
-            benutzerliste.changeGuthaben(Guthaben.dreisig, tmp);
+            benutzerliste.changeGuthaben(Guthaben.fuenfzig, tmp);
             jtableausgabe.repaint();
         } catch (SQLException ex) {
             Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnadd30ActionPerformed
+    }//GEN-LAST:event_btnadd50ActionPerformed
 
     private void btnWareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWareActionPerformed
         // TODO add your handling code here:
         wareGUI.setVisible(true);
     }//GEN-LAST:event_btnWareActionPerformed
 
+    private void btnadduserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadduserActionPerformed
+        // TODO add your handling code here:
+        addusergui = new AddUserGUI(benutzerliste);
+        addusergui.setAdminGUI(admingui);
+        addusergui.setVisible(true);
+        jtableausgabe.repaint();
+    }//GEN-LAST:event_btnadduserActionPerformed
+
+    private void btnremoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnremoveActionPerformed
+        // TODO add your handling code here:
+        Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
+        try {
+            benutzerliste.remove(tmp);
+            jtableausgabe.repaint();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnremoveActionPerformed
+
     /**
      * @param args the command line arguments
      */
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnWare;
     private javax.swing.JButton btnadd10;
     private javax.swing.JButton btnadd20;
-    private javax.swing.JButton btnadd30;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnadd50;
+    private javax.swing.JButton btnadduser;
+    private javax.swing.JButton btnremove;
+    private javax.swing.JButton btnändern;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

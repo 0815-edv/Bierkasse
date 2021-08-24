@@ -43,4 +43,10 @@ public class WareTableModel extends AbstractTableModel {
         return false;
     }
     
+    @Override
+    public String getColumnName(int index) {
+        String[] wert = {"ID", "Artikel"};
+        return wert[index];
+    }
+    
 }

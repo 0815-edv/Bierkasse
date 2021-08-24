@@ -41,6 +41,7 @@ public class appControllerWork {
         warenGUI.setWarenliste(warenliste);
         warenGUI.initialisierung();
         adminGUI.setWareGUI(warenGUI);
+        adminGUI.setAdmingui(adminGUI);
 
     }
 

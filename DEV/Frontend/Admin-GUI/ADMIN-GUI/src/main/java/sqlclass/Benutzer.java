@@ -16,7 +16,7 @@ public class Benutzer {
     private String vorname;
     private double guthaben;
     private int isAdmin;    // 0-> ist kein Admin --  1-> ist Admin
-    private long chipid;
+    private Long chipid;
 
     public Benutzer(int idrfid, String name, String vorname, double guthaben, int isAdmin, Long chipid) {
         this.idrfid = idrfid;

@@ -5,6 +5,7 @@
  */
 package de.dlrg.de.admin.gui.sql;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,9 @@ public class DBConnectorMysql extends DBConnector {
         super(ip, port, user, password, dbName);
     }
 
+    
+    
+    
     @Override
     public void connect() {
         try {
@@ -75,12 +79,13 @@ public class DBConnectorMysql extends DBConnector {
 
         }
     }
+    
+    
     @Override
-    public void insert(PreparedStatement psql, String query){
+    public void preparedExecute(PreparedStatement psql){
         try {
-            if (query != null & psql != null){
-            psql = con.prepareStatement(query);
-            psql.execute();
+            if (psql != null){
+            psql.executeUpdate();
             }
         } catch (SQLException ex) {
             Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);

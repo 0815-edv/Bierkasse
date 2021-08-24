@@ -33,6 +33,9 @@ public abstract class DBConnector {
         this.password = password;
         this.dbName = dbName;
     }
+    public Connection getCon() {
+        return con;
+    }
 
     public abstract void connect();
 
@@ -40,7 +43,7 @@ public abstract class DBConnector {
 
     public abstract ResultSet query(String sql);
     
-    public abstract void insert(PreparedStatement psql, String query);
+    public abstract void preparedExecute(PreparedStatement psql);
     
     public void update(String sql){};
 

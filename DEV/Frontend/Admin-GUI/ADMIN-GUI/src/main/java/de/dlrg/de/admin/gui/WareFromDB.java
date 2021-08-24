@@ -9,7 +9,6 @@ import de.dlrg.de.admin.gui.sql.DBConnector;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import sqlclass.Ware;
 
 /**
@@ -29,6 +28,7 @@ public class WareFromDB {
     }
 
     private void getData() throws SQLException {
+        waren.clear();
         dbConnector.connect();
         rs = dbConnector.query("Select * FROM Ware");
         while (rs.next()) {
@@ -44,9 +44,11 @@ public class WareFromDB {
     }
 
     public void addWare(String name) throws SQLException {
+        
         String query = "insert into Ware (id, name)"
                 + " Values (?, ?)";
         PreparedStatement psql = null;
+        psql = dbConnector.getCon().prepareStatement(query);
         int ID = waren.size() + 1;
         for (int i = 0; i < waren.size(); i++) {
             if (ID == waren.get(i).getId()) {
@@ -60,7 +62,8 @@ public class WareFromDB {
         if (name != null) {
             psql.setInt(1, ID);
             psql.setString(2, name);
-            dbConnector.insert(psql, query);
+            dbConnector.preparedExecute(psql);
         }
+        getData();
     }
 }
