@@ -60,6 +60,10 @@ public class AdminGUI extends javax.swing.JFrame {
     }
 
     public void refresh() {
+        
+        benutzerTableModel = null;
+        benutzerTableModel = new BenutzerTableModel(benutzerliste.get());
+        jtableausgabe.setModel(benutzerTableModel);
         jtableausgabe.repaint();
     }
 
@@ -411,7 +415,7 @@ public class AdminGUI extends javax.swing.JFrame {
         addusergui = new AddUserGUI(benutzerliste);
         addusergui.setAdminGUI(admingui);
         addusergui.setVisible(true);
-        jtableausgabe.repaint();
+        refresh();
     }//GEN-LAST:event_btnadduserActionPerformed
 
     private void btnremoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnremoveActionPerformed
@@ -419,7 +423,8 @@ public class AdminGUI extends javax.swing.JFrame {
         Benutzer tmp = benutzerliste.get().get(jtableausgabe.getSelectedRow());
         try {
             benutzerliste.remove(tmp);
-            jtableausgabe.repaint();
+            refresh();
+
         } catch (SQLException ex) {
             Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
