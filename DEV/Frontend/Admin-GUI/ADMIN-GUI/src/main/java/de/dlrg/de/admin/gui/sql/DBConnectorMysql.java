@@ -5,7 +5,6 @@
  */
 package de.dlrg.de.admin.gui.sql;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,9 +31,7 @@ public class DBConnectorMysql extends DBConnector {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.
                     getConnection("jdbc:mysql://" + ip + ":" + port + "/" + dbName, user, password);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBConnectorMysql.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

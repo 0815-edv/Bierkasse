@@ -5,8 +5,15 @@
  */
 package de.dlrg.de.admin.gui;
 
+import com.google.gson.Gson;
+import de.dlrg.de.admin.gui.Ware.WareFromDB;
+import de.dlrg.de.admin.gui.Ware.WareGUI;
 import de.dlrg.de.admin.gui.sql.DBConnector;
 import de.dlrg.de.admin.gui.sql.DBConnectorMysql;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.SQLException;
 
 /**
@@ -15,18 +22,26 @@ import java.sql.SQLException;
  */
 public class appControllerWork {
 
-    /**
-     * @param args the command line arguments
-     */
     private AdminGUI adminGUI;
     private DBConnector dBConnector;
     private BenutzerFromDB benutzerliste;
     private WareFromDB warenliste;
     private WareGUI warenGUI;
 
-    public void initApp() throws SQLException {
+    public void initApp() throws SQLException, FileNotFoundException {
 
-        dBConnector = new DBConnectorMysql("159.69.144.39", 3306, "flwerner", "BierkasseDLRG123!", "bierkassedlrg");
+
+        Gson gson = new Gson();
+        Config config = null;
+        try{
+        Reader reader = new FileReader("C:\\Users\\flori\\Desktop\\config.json");
+        config = gson.fromJson(reader, Config.class);
+        }
+        catch (IOException ex){
+        ex.printStackTrace();
+        }
+        
+        dBConnector = new DBConnectorMysql(config.getUrl(), 3306, config.getUser(), config.getPassword(), config.getDatabase());
 
         benutzerliste = new BenutzerFromDB(dBConnector);
         warenliste = new WareFromDB(dBConnector);

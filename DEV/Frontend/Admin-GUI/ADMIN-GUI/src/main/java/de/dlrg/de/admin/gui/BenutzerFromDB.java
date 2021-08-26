@@ -54,11 +54,19 @@ public class BenutzerFromDB {
     }
 
     public void update(Benutzer tmp) throws SQLException {
-        dBConnector.update("UPDATE benutzer "
-                + "SET name = " + "'" + tmp.getName() + "', " + "vorname = " + "'" + tmp.getVorname() + "', " + "chipid = " + tmp.getChipid() + ", "
-                + "Where idrfid = " + tmp.getIdrfid());
+//        dBConnector.update("UPDATE benutzer "
+//                + "SET name = " + "'" + tmp.getName() + "', " + "vorname = " + "'" + tmp.getVorname() + "', " + "chipid = " + tmp.getChipid() + ", "
+//                + "Where idrfid = " + tmp.getIdrfid());
+        
+        String query = "UPDATE  benutzer SET name = ?, vorname = ?, chipid = ? Where idrfid like ?";
+        PreparedStatement psql = dBConnector.getCon().prepareStatement(query);
+       
+        psql.setString(1, tmp.getName());
+        psql.setString(2, tmp.getVorname());
+        psql.setLong(3, tmp.getChipid());
+        psql.setInt(4, tmp.getIdrfid());
+        dBConnector.preparedExecute(psql);
         getData();
-
     }
 
     public void changeGuthaben(Guthaben guthaben, Benutzer tmp) throws SQLException {

@@ -6,6 +6,7 @@
 package de.dlrg.de.admin.login;
 
 import de.dlrg.de.admin.gui.appControllerWork;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,7 @@ public class appController {
     private LoginGUI logingui;
     private appControllerWork apcontrollerwork;
 
-    private void initialisierung() throws SQLException {
+    private void initialisierung() throws SQLException, FileNotFoundException {
         logingui = new LoginGUI();
         apcontrollerwork = new appControllerWork();
         apcontrollerwork.initApp();
@@ -39,7 +40,7 @@ public class appController {
                 appController appcontroller = new appController();
                 try {
                     appcontroller.initialisierung();
-                } catch (SQLException ex) {
+                } catch (SQLException | FileNotFoundException ex) {
                     Logger.getLogger(appController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 

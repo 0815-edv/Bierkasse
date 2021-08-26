@@ -5,6 +5,7 @@
  */
 package de.dlrg.de.admin.gui;
 
+import de.dlrg.de.admin.gui.Ware.WareGUI;
 import ENUM.Guthaben;
 import de.dlrg.de.admin.gui.sql.DBConnector;
 import de.dlrg.de.admin.login.LoginGUI;
@@ -387,6 +388,7 @@ public class AdminGUI extends javax.swing.JFrame {
         tmp.setIdrfid(Integer.parseInt(txfrfidchip.getText()));
         tmp.setName(txfname.getText());
         tmp.setVorname(txfvorname.getText());
+        tmp.setChipid(Long.parseLong(txfchipid.getText()));
         try {
             benutzerliste.update(tmp);
         } catch (SQLException ex) {

@@ -6,7 +6,7 @@
 package de.dlrg.de.admin.login;
 
 import de.dlrg.de.admin.gui.AdminGUI;
-import de.dlrg.de.admin.gui.WareGUI;
+import de.dlrg.de.admin.gui.Ware.WareGUI;
 import de.dlrg.de.admin.gui.sql.DBConnector;
 
 /**

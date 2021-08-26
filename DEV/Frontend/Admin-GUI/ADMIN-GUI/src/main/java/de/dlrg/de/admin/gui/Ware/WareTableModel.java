@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.dlrg.de.admin.gui;
+package de.dlrg.de.admin.gui.Ware;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
