@@ -34,7 +34,7 @@ public class appControllerWork {
         Gson gson = new Gson();
         Config config = null;
         try{
-        Reader reader = new FileReader("C:\\Users\\flori\\Desktop\\config.json");
+        Reader reader = new FileReader("C:\\Users\\flori\\OneDrive\\Programmierung\\Zusammenarbeit\\Bierkasse\\config.json");
         config = gson.fromJson(reader, Config.class);
         }
         catch (IOException ex){
