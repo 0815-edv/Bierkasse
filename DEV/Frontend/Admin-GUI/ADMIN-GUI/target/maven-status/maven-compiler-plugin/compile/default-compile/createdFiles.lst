@@ -1,6 +1,7 @@
 de\dlrg\de\admin\gui\AddUserGUI.class
 sqlclass\Ware.class
 de\dlrg\de\admin\gui\Ware\WareGUI$1.class
+de\dlrg\de\admin\gui\kaufe\KaufeGUI.class
 de\dlrg\de\admin\gui\Ware\WareFromDB.class
 de\dlrg\de\admin\gui\AdminGUI$5.class
 de\dlrg\de\admin\gui\kaufe\KaufeFromDB.class
