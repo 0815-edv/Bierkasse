@@ -15,6 +15,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,20 +32,9 @@ public class appControllerWork {
     private WareGUI warenGUI;
 
     public void initApp() throws SQLException, FileNotFoundException {
-
-
-        Gson gson = new Gson();
-        Config config = null;
-        try{
-        Reader reader = new FileReader("C:\\Users\\flori\\OneDrive\\Programmierung\\Zusammenarbeit\\Bierkasse\\config.json");
-        config = gson.fromJson(reader, Config.class);
-        }
-        catch (IOException ex){
-        ex.printStackTrace();
-        }
         
-        dBConnector = new DBConnectorMysql(config.getUrl(), 3306, config.getUser(), config.getPassword(), config.getDatabase());
-
+        startDBConnection();
+        
         benutzerliste = new BenutzerFromDB(dBConnector);
         warenliste = new WareFromDB(dBConnector);
 
@@ -58,6 +50,25 @@ public class appControllerWork {
         adminGUI.setWareGUI(warenGUI);
         adminGUI.setAdmingui(adminGUI);
 
+    }
+    
+    private void startDBConnection(){
+    
+    Gson gson = new Gson();
+        Config config = null;
+        try {
+            Reader reader = new FileReader("C:\\Users\\flori\\OneDrive\\Programmierung\\Zusammenarbeit\\Bierkasse\\config.json");
+            config = gson.fromJson(reader, Config.class);
+        } catch (IOException ex) {
+            Logger.getLogger(appControllerWork.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (config != null){
+        dBConnector = new DBConnectorMysql(config.getUrl(), 3306, config.getUser(), config.getPassword(), config.getDatabase());
+        }
+        else
+        {
+            JOptionPane.showConfirmDialog(null, "Die Verbindung ist fehlgeschlagen");
+        }
     }
 
     public AdminGUI getAdminGUI() {
