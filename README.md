@@ -10,5 +10,3 @@ Bierkasse für durstige DLRG ler die gerne mal das Zählen vergessen.
   "url": "" ,
   "database": ""
 }
-
-Dann in der Klasse appControllerWork den Pfad ändern.
