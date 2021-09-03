@@ -19,6 +19,7 @@ public class AddUserGUI extends javax.swing.JFrame {
 
     private BenutzerFromDB benutzerliste;
     private AdminGUI adminGUI;
+    private AddUserGUI addusergui;
 
     /**
      * Creates new form AddUserGUI
@@ -30,6 +31,9 @@ public class AddUserGUI extends javax.swing.JFrame {
 
     public void setAdminGUI(AdminGUI adminGUI) {
         this.adminGUI = adminGUI;
+    }
+    public void setAddUserGUI(AddUserGUI addusergui){
+        this.addusergui = addusergui;
     }
     
 
@@ -189,6 +193,7 @@ public class AddUserGUI extends javax.swing.JFrame {
             Logger.getLogger(AddUserGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         adminGUI.refresh();
+        addusergui.dispose();
 
     }//GEN-LAST:event_btnaddActionPerformed
 

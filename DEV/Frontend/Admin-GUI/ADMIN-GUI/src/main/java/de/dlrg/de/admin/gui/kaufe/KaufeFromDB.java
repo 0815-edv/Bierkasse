@@ -21,17 +21,18 @@ public class KaufeFromDB {
     private DBConnector dbconnector;
     private ResultSet rs = null;
 
-    public KaufeFromDB(DBConnector dbconnector) {
+    public KaufeFromDB(DBConnector dbconnector) throws SQLException {
         this.dbconnector = dbconnector;
+        getData();
     }
     
     
     
     private void getData() throws SQLException {
         dbconnector.connect();
-        kauefe tmp = new kauefe();
-        
+        rs = dbconnector.query("Select * FROM kauefe");
         while (rs.next()) {
+            kauefe tmp = new kauefe();
             tmp.setId(rs.getInt(1));
             tmp.setDatum(rs.getDate(2));
             tmp.setBenutzer_idrfid(rs.getInt(3));

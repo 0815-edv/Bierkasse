@@ -7,6 +7,8 @@ package de.dlrg.de.admin.gui;
 
 import de.dlrg.de.admin.gui.Ware.WareGUI;
 import ENUM.Guthaben;
+import de.dlrg.de.admin.gui.kaufe.KaufeFromDB;
+import de.dlrg.de.admin.gui.kaufe.KaufeGUI;
 import de.dlrg.de.admin.gui.sql.DBConnector;
 import de.dlrg.de.admin.login.LoginGUI;
 import java.sql.SQLException;
@@ -30,6 +32,7 @@ public class AdminGUI extends javax.swing.JFrame {
     private LoginGUI loginGUI;
     private AddUserGUI addusergui;
     private AdminGUI admingui;
+    private KaufeFromDB kaufeliste;
 
     public AdminGUI() {
         initComponents();
@@ -103,7 +106,7 @@ public class AdminGUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         btnremove = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jtableausgabe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -233,6 +236,11 @@ public class AdminGUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("Benutzer Historie");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         btnremove.setText("Remove");
         btnremove.addActionListener(new java.awt.event.ActionListener() {
@@ -416,6 +424,7 @@ public class AdminGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         addusergui = new AddUserGUI(benutzerliste);
         addusergui.setAdminGUI(admingui);
+        addusergui.setAddUserGUI(addusergui);
         addusergui.setVisible(true);
         refresh();
     }//GEN-LAST:event_btnadduserActionPerformed
@@ -430,7 +439,23 @@ public class AdminGUI extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        txfchipid.setText(null);
+        txfguthaben.setText(null);
+        txfname.setText(null);
+        txfrfidchip.setText(null);
+        txfvorname.setText(null);
     }//GEN-LAST:event_btnremoveActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+            // TODO add your handling code here:
+           kaufeliste = new KaufeFromDB(dBConnector);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminGUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        KaufeGUI kaufegui = new KaufeGUI(kaufeliste, benutzerliste, wareGUI.getWarenliste());
+        kaufegui.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

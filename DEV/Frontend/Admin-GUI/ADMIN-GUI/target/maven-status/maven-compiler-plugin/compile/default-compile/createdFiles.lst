@@ -5,6 +5,8 @@ de\dlrg\de\admin\gui\kaufe\KaufeGUI.class
 de\dlrg\de\admin\gui\Ware\WareFromDB.class
 de\dlrg\de\admin\gui\AdminGUI$5.class
 de\dlrg\de\admin\gui\kaufe\KaufeFromDB.class
+de\dlrg\de\admin\gui\AdminGUI$9.class
+de\dlrg\de\admin\gui\kaufe\KaufeTableModel.class
 de\dlrg\de\admin\gui\AdminGUI$4.class
 de\dlrg\de\admin\gui\AddUserGUI$1.class
 de\dlrg\de\admin\gui\AdminGUI$2.class

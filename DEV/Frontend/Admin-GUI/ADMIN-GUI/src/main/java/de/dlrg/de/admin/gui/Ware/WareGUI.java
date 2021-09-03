@@ -24,6 +24,11 @@ public class WareGUI extends javax.swing.JFrame {
     private WareFromDB warenliste;
     private WareTableModel waretablemodel;
 
+    public WareFromDB getWarenliste() {
+        return warenliste;
+    }
+    
+
     public WareGUI() {
         initComponents();
 

@@ -5,6 +5,9 @@
  */
 package de.dlrg.de.admin.gui.kaufe;
 
+import de.dlrg.de.admin.gui.BenutzerFromDB;
+import de.dlrg.de.admin.gui.Ware.WareFromDB;
+
 /**
  *
  * @author flori
@@ -14,10 +17,25 @@ public class KaufeGUI extends javax.swing.JFrame {
     /**
      * Creates new form KaufeGUI
      */
-    public KaufeGUI() {
+    private KaufeFromDB kaufeliste;
+    private BenutzerFromDB benutzerfromdb;
+    private WareFromDB warenfromdb;
+    private KaufeTableModel kaufetablemodel;
+    
+    public KaufeGUI(KaufeFromDB kaufeliste, BenutzerFromDB benutzerfromdb,WareFromDB warenfromdb) {
+        this.kaufeliste = kaufeliste;
+        this.benutzerfromdb = benutzerfromdb;
+        this.warenfromdb = warenfromdb;
         initComponents();
+        initHistorie();
     }
 
+    private void initHistorie(){
+        
+        kaufetablemodel = new KaufeTableModel(kaufeliste.get(), benutzerfromdb.get(), warenfromdb.get());
+        tblhistorie.setModel(kaufetablemodel);
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,11 +47,11 @@ public class KaufeGUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblhistorie = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblhistorie.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -44,7 +62,7 @@ public class KaufeGUI extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblhistorie);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,9 +83,8 @@ public class KaufeGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,6 +105,6 @@ public class KaufeGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblhistorie;
     // End of variables declaration//GEN-END:variables
 }
