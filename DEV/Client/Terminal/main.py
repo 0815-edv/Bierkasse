@@ -1,6 +1,7 @@
 import json
 import mysql.connector
 import RPi.GPIO as GPIO
+import time
 from RPLCD.i2c import CharLCD
 from mfrc522 import SimpleMFRC522
 
@@ -97,6 +98,14 @@ def secondguthabenDisplay():
     lcd.cursor_pos = (3, 0)
     lcd.write_string = ("> Exit")
 
+def changeDisplay(x):
+    if x == 1:
+        firstDisplay()
+    if x == 2:
+        secondDisplay()
+    if x == 3:
+        thirdDisplay()
+
 
 ###################READ CHIP########################################################################
 def getUser():
@@ -131,4 +140,23 @@ initDisplay()
 reader = SimpleMFRC522()
 getUser()
 firstDisplay()
+
+i = 1
+while (True):
+
+    if GPIO.input(19) == 0:
+
+        i = i+1
+        if i>3:
+            i=3
+        changeDisplay(i)
+        time.sleep(1)
+    elif GPIO.input(26) ==0:
+
+        i = i-1
+        if i<1:
+            i=1
+        changeDisplay(i)
+        time.sleep(1)
+
 ###hier gehts weiter###
