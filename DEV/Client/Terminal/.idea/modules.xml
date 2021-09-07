@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DB-Zugriff.iml" filepath="$PROJECT_DIR$/.idea/DB-Zugriff.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Bierkassen-Terminal.iml" filepath="$PROJECT_DIR$/.idea/Bierkassen-Terminal.iml" />
     </modules>
   </component>
 </project>
