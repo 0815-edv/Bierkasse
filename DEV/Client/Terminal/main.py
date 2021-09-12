@@ -78,6 +78,23 @@ def thirdDisplay():
     lcd.cursor_pos = (3, 0)
     lcd.write_string(" >3. Exit")
 
+def getränkauswahl():
+    lcd.clear()
+    lcd.cursor_pos = (0, 0)
+    lcd.write_string(vorname + " " + name)
+    lcd.cursor_pos = (1, 0)
+    lcd.write_string("  >1. Getränk Kaufen ")
+    lcd.cursor_pos = (2, 0)
+    lcd.write_string("  2. Exit ")
+
+def getränkauswahlbeenden():
+    lcd.clear
+    lcd.cursor_pos = (0, 0)
+    lcd.write_string(vorname + " " + name)
+    lcd.cursor_pos = (1, 0)
+    lcd.write_string("  1. Getränk Kaufen ")
+    lcd.cursor_pos = (2, 0)
+    lcd.write_string("  >2. Exit ")
 
 def firstguthabenDisplay():
     lcd.clear()
@@ -105,6 +122,10 @@ def changeDisplay(x):
         secondDisplay()
     if x == 3:
         thirdDisplay()
+
+def selectOption(x):
+    if x ==1 :
+        getränkauswahl()
 
 
 ###################READ CHIP########################################################################
@@ -135,6 +156,15 @@ def getUser():
             con.close()
             break
 
+def getraenkbuchen():
+    sql = "INSERT INTO kauefe (Datum, benutzer_idrfid, Ware_id) VALUES(%s, %s, %s)"
+    val = ("now()", id(), 1)
+    cursor.execute(sql, val)
+
+    sql = "UPDATE benutzer SET guthaben = guthaben -1 Where idrfid like" + id()
+    cursor.execute(sql)
+
+
 
 initDisplay()
 reader = SimpleMFRC522()
@@ -143,9 +173,7 @@ firstDisplay()
 
 i = 1
 while (True):
-
     if GPIO.input(19) == 0:
-
         i = i+1
         if i>3:
             i=3
@@ -158,5 +186,41 @@ while (True):
             i=1
         changeDisplay(i)
         time.sleep(1)
+
+    if GPIO.input(13) == 0:
+        selectOption(i)
+        time.sleep(1)
+        break
+
+while (True):
+    z = 1
+    if i==1:
+        if GPIO.input(19) == 0:
+            z = z + 1
+            if z > 2:
+                z = 2
+            getränkauswahlbeenden()
+            time.sleep(1)
+        elif GPIO.input(26) == 0:
+
+            z = z - 1
+            if z < 1:
+                z = 1
+            getränkauswahl()
+            time.sleep(1)
+        if GPIO.input(13) == 0 and z ==1:
+            getraenkbuchen()
+            z==1
+            break
+
+        elif GPIO.input(13) == 0 and z ==2:
+            z == 1
+            break
+
+
+
+
+
+
 
 ###hier gehts weiter###
