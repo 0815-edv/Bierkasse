@@ -21,7 +21,7 @@ public abstract class DBConnector {
     protected String user;
     protected String password;
     protected String dbName;
-
+    
     protected Connection con;
     protected ResultSet res;
     protected Statement stat;
