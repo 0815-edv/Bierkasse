@@ -1,0 +1,29 @@
+Ware:
+Benutzer:
+HTTP-200 = OK
+HTTP-404 = NOT Found
+HTTP-406 = Not Acceptable
+
+@GetMapping(path = "/get", produces = "application/json")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@GetMapping(path = "/get/{id}", produces = "application/json")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PostMapping(path = "/add")
+HTTP-200 = OK
+
+@DeleteMapping(path = "/del")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PatchMapping(path = "/anzahl/add")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PatchMapping(path = "/anzahl/sub")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+HTTP-406 = Not Acceptable

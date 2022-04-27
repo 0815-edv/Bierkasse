@@ -1,0 +1,30 @@
+Guthaben:
+HTTP-200 = OK
+HTTP-201 = CREATED
+HTTP-400 = BAD_REQUEST
+HTTP-404 = NOT Found
+HTTP-406 = NOT_ACCEPTABLE
+HTTP-409 = CONFLICT
+
+@GetMapping(path = "/get", produces = "application/json")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@GetMapping(path = "/revision/get", produces = "application/json")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PostMapping(path = "/antrag/add")
+HTTP-201 = CREATED
+HTTP-404 = NOT Found
+HTTP-409 = CONFLICT
+
+@PostMapping(path = "/antrag/accept")
+HTTP-200 = OK
+HTTP-400 = BAD_REQUEST
+HTTP-406 = NOT_ACCEPTABLE
+
+@PostMapping(path = "/antrag/deny")
+HTTP-200 = OK
+HTTP-400 = BAD_REQUEST
+HTTP-404 = NOT Found

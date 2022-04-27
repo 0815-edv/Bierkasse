@@ -1,0 +1,30 @@
+Benutzer:
+HTTP-200 = OK
+HTTP-404 = NOT Found
+HTTP-201 = Created
+HTTP-409 = Conflict
+HTTP-406 = Not Acceptable
+
+@GetMapping(path = "/get/{id}", produces = "application/json")
+-HTTP-200 = OK
+-HTTP-404 = NOT Found
+
+@GetMapping(path = "/get/{chipid}", produces = "application/json")
+-HTTP-200 = OK
+-HTTP-404 = NOT Found
+
+@PostMapping(path = "/add")
+HTTP-201 = Created
+HTTP-409 = Conflict
+
+@DeleteMapping(path = "/del/{id}")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PatchMapping(path = "/guthaben/add")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PatchMapping(path = "/guthaben/sub")
+HTTP-200 = OK
+HTTP-406 = Not Acceptable

@@ -1,0 +1,14 @@
+Kaufe:
+HTTP-200 = OK
+HTTP-400 = BAD_REQUEST
+HTTP-404 = NOT Found
+HTTP-406 = Not Acceptable
+
+@GetMapping(path = "/get", produces = "application/json")
+HTTP-200 = OK
+HTTP-404 = NOT Found
+
+@PostMapping(path = "/add")
+HTTP-200 = OK
+HTTP-400 = BAD_REQUEST
+HTTP-406 = Not Acceptable
