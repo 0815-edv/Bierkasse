@@ -6,7 +6,6 @@ package de.dlrg.fw.bierkasse.persistenAdapter;
 
 import de.dlrg.fw.bierkasse.entitäten.Benutzer;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
