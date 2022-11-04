@@ -1,0 +1,5 @@
+requests~=2.25.1
+mfrc522~=0.0.7
+setuptools~=52.0.0
+PyQt5~=5.15.2
+QtPy~=2.0.1
